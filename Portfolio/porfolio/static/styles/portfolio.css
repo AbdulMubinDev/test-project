@@ -1,0 +1,151 @@
+body.portfolio-page {
+    font-family: 'DM Sans', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #eaf6ff;
+    background: radial-gradient(900px 380px at 10% 12%, rgba(79,179,255,0.03), transparent 8%), linear-gradient(180deg, #021127, #03192a 75%);
+}
+
+.portfolio-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+}
+
+.portfolio-header {
+    display: flex;
+    justify-content: flex-start; /* keep brand at left like home page */
+    align-items: center;
+    padding: 28px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position:relative;
+    z-index:6;
+}
+
+.portfolio-header__brand {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.94);
+    text-decoration: none;
+}
+.portfolio-header__brand:hover{opacity:0.95}
+
+/* Keep the brand from collapsing with nav links: prevent shrinking and add spacing */
+.portfolio-header__brand{
+    /* prevent the brand from shrinking when space is tight */
+    flex: 0 0 auto;
+    margin-right: 20px;
+    white-space: nowrap; /* keep brand on one line */
+}
+
+/* Make brand align left and nav center like the home page. On wide screens the nav will be centered using auto margins. */
+.portfolio-header__brand { order: 0; }
+
+/* center the nav similar to .nav in home.css */
+.portfolio-header__nav { margin: 0 auto; }
+
+.portfolio-header__nav { display:flex; gap:28px; align-items:center; flex-wrap:wrap }
+.portfolio-header__link { color:rgba(255,255,255,0.9); text-decoration:none; white-space:nowrap }
+.portfolio-header__link.active{ color:var(--accent, rgba(255,255,255,0.9)) }
+
+/* If there isn't enough horizontal space, ensure brand and nav stack nicely on small screens */
+@media (max-width: 700px) {
+    .portfolio-header__brand { margin-right:0; }
+    .portfolio-header { align-items:flex-start }
+    .portfolio-header__nav { width:100%; justify-content:center; gap:16px }
+}
+
+/* Revert fixed positioning on small-to-medium widths so brand remains in flow */
+@media (max-width: 899px) {
+    .portfolio-header__brand { position: static; top: auto; left: auto; padding: 0; }
+    .portfolio-header { padding-left: 40px; }
+}
+
+.portfolio-main {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 40px 80px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.portfolio-hero { text-align:center; }
+.portfolio-hero__eyebrow{ color:#6fb8ff; font-size:0.95rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; font-weight:700 }
+.portfolio-hero__title{ font-size:2.8rem; margin:0 0 12px 0; font-weight:800; color:#f7fbff }
+.portfolio-hero__subtitle{ font-size:1.05rem; color:rgba(234,246,255,0.75); margin:0 }
+
+.portfolio-list{ display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:28px }
+
+.portfolio-card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(2,6,23,0.45);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s, box-shadow 0.18s;
+    position: relative;
+    min-height: 420px;
+    border:1px solid rgba(255,255,255,0.03);
+}
+.portfolio-card:hover{ transform:translateY(-8px) scale(1.01); box-shadow:0 18px 60px rgba(2,6,23,0.6) }
+.portfolio-card__image-wrap{ width:100%; height:220px; overflow:hidden; background:linear-gradient(120deg,#021227 0%, #032236 100%); display:flex; align-items:center; justify-content:center }
+.portfolio-card__image{ width:100%; height:100%; object-fit:cover; transition:transform 0.4s cubic-bezier(.77,0,.18,1) }
+.portfolio-card:hover .portfolio-card__image{ transform:scale(1.07) rotate(-1deg) }
+.portfolio-card__content{ padding:24px; display:flex; flex-direction:column; flex:1 }
+.portfolio-card__title{ font-size:1.25rem; font-weight:700; margin:0 0 8px 0; color:#fff }
+.portfolio-card__desc{ font-size:1rem; color:rgba(234,246,255,0.7); margin-bottom:18px; flex:1 }
+.portfolio-card__link{ align-self:flex-start; background:linear-gradient(90deg,#6fb8ff,#88e6ff); color:#012036; text-decoration:none; font-weight:700; padding:9px 20px; border-radius:20px }
+
+.portfolio-cta{
+    margin:64px auto 0 auto; text-align:center; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:36px 24px 28px 24px; max-width:680px; box-shadow:0 12px 40px rgba(2,6,23,0.45); border:1px solid rgba(255,255,255,0.03)
+}
+.portfolio-cta h2{ margin:0 0 12px 0; font-size:2rem; color:#6fb8ff; font-weight:700 }
+.portfolio-cta p{ color:rgba(234,246,255,0.75) }
+.portfolio-cta__button{ background:linear-gradient(90deg,#6fb8ff,#88e6ff); color:#012036; padding:12px 28px; border-radius:28px; font-weight:800; text-decoration:none }
+
+.portfolio-footer{ text-align:center; padding:24px 0 16px 0; color:rgba(234,246,255,0.55); font-size:1rem; margin-top:48px }
+
+/* Liquid / gooey background (page-scoped styles) */
+.liquid{position:fixed;inset:0;z-index:0;pointer-events:none}
+.liquid .blobs{position:absolute;inset:-20% -10% -20% -10%;filter:url('#goo');transform:translateZ(0)}
+.liquid .blob{position:absolute;border-radius:50%;background:linear-gradient(135deg, rgba(79,179,255,0.18), rgba(127,200,255,0.08));mix-blend-mode:screen;opacity:0.95;will-change:transform,opacity}
+.blob{width:var(--b-size,200px);height:var(--b-size,200px);left:var(--b-x,10%);top:var(--b-y,10%);transform:translate3d(0,0,0);animation:blob-move var(--b-dur,12s) linear infinite}
+
+@keyframes blob-move{0%{transform:translate3d(0,0,0) scale(1)}25%{transform:translate3d(20px,-30px,0) scale(1.05)}50%{transform:translate3d(-30px,20px,0) scale(0.95)}75%{transform:translate3d(20px,30px,0) scale(1.02)}100%{transform:translate3d(0,0,0) scale(1)}}
+
+/* Responsive */
+@media (max-width:700px){
+    .portfolio-header{padding:20px}
+    .portfolio-main{padding:24px}
+    .portfolio-card__image-wrap{height:160px}
+}
+
+
+/* Responsive */
+@media (max-width: 700px) {
+    .portfolio-header {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 4vw 12px 4vw;
+    }
+    .portfolio-main {
+        padding: 24px 2vw 0 2vw;
+        gap: 32px;
+    }
+    .portfolio-list {
+        gap: 18px;
+    }
+    .portfolio-cta {
+        padding: 28px 8px 20px 8px;
+    }
+}
+
